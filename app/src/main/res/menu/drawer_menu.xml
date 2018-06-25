@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_about"
+            android:onClick="aboutOpen"
+            android:icon="@drawable/about"
+            android:title="@string/about" />
+        <item
+            android:id="@+id/nav_bug"
+            android:onClick="bugReport"
+            android:icon="@drawable/bug"
+            android:title="@string/bug_report"/>
+        <item
+            android:id="@+id/nav_sign_out"
+            android:onClick="signOut"
+            android:icon="@drawable/sign_out"
+            android:title="@string/sign_out" />
+    </group>
+
+</menu>
