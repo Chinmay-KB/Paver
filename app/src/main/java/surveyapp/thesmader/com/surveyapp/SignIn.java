@@ -53,10 +53,10 @@ public class SignIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         ConstraintLayout constraintLayout = findViewById(R.id.mbg);
-        AnimationDrawable animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
-        animationDrawable.setEnterFadeDuration(1000);
-        animationDrawable.setExitFadeDuration(2000);
-        animationDrawable.start();
+        //AnimationDrawable animationDrawable = (AnimationDrawable) constraintLayout.getBackground();
+        //animationDrawable.setEnterFadeDuration(1000);
+        //animationDrawable.setExitFadeDuration(2000);
+        //animationDrawable.start();
         button =(Button)findViewById(R.id.googleBtn);
         mAuth = FirebaseAuth.getInstance();
         user=FirebaseAuth.getInstance().getCurrentUser();

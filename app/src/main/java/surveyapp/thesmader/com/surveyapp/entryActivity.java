@@ -13,6 +13,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -72,7 +73,7 @@ public class entryActivity extends AppCompatActivity implements View.OnClickList
 
     int editIndex;
 
-    FloatingActionButton tableEditButton;
+    android.support.v7.widget.AppCompatButton tableEditButton, addButton, saveButton;
     public int index;
     List<String> a;
     int xIndex[],xMarks[],xMain[],xs1[],xs2[],xs3[];
@@ -107,8 +108,10 @@ public class entryActivity extends AppCompatActivity implements View.OnClickList
             xs3[1]=0;
         }
         setContentView(R.layout.page_entry);
-        //tableEditButton=(FloatingActionButton)findViewById(R.id.tableEditButton);
-        //tableEditButton.setVisibility(View.GONE);
+        tableEditButton= (AppCompatButton) findViewById(R.id.tableEditButton);
+        tableEditButton.setVisibility(View.GONE);
+        saveButton = findViewById(R.id.floatingActionButton3);
+        addButton = findViewById(R.id.floatingActionButton2);
          stream1=(RadioGroup)findViewById(R.id.stream1);
          stream2=(RadioGroup)findViewById(R.id.stream2);
          bs3=findViewById(R.id.floatingActionButton6);
@@ -145,6 +148,7 @@ public class entryActivity extends AppCompatActivity implements View.OnClickList
 
     if (stream.equals("B.Tech"))
         r1.setChecked(true);
+        r1.toggle();
     if (stream.equals("M.A"))
         r2.setChecked(true);
     if (stream.equals("M.B.A"))
@@ -196,7 +200,16 @@ public class entryActivity extends AppCompatActivity implements View.OnClickList
                     }
                 });
         tableEditButton.setVisibility(View.GONE);
+        s3.setText("");
+        s2.setText("");
+        s3.setVisibility(View.GONE);
+        s2.setVisibility(View.GONE);
+        bs2.setVisibility(View.VISIBLE);
+        bs3.setVisibility(View.VISIBLE);
+        saveButton.setVisibility(View.VISIBLE);
+        addButton.setVisibility(View.VISIBLE);
         uiRef();
+
     }
 
 
@@ -348,37 +361,37 @@ public void uiRef()
     TableRow tbrow0 = new TableRow(this);
     TextView tv0 = new TextView(this);
     tv0.setTypeface(typeface);
-    tv0.setText("S.No   ");
-    tv0.setTextSize(25);
+    tv0.setText(" #   ");
+    tv0.setTextSize(22);
     tv0.setTextColor(Color.BLACK);
     tbrow0.addView(tv0);
     TextView tv1 = new TextView(this);
-    tv1.setText("Marks   ");
+    tv1.setText("   Marks   ");
     tv1.setTypeface(typeface);
-    tv1.setTextSize(25);
+    tv1.setTextSize(22);
     tv1.setTextColor(Color.BLACK);
     tbrow0.addView(tv1);
     TextView tv2 = new TextView(this);
-    tv2.setText("Main  ");
-    tv2.setTextSize(25);
+    tv2.setText("Main   ");
+    tv2.setTextSize(22);
     tv2.setTypeface(typeface);
     tv2.setTextColor(Color.BLACK);
     tbrow0.addView(tv2);
     TextView tv3 = new TextView(this);
     tv3.setText("S1  ");
     tv3.setTextColor(Color.BLACK);
-    tv3.setTextSize(25);
+    tv3.setTextSize(22);
     tv3.setTypeface(typeface);
     tbrow0.addView(tv3);
     TextView tv4 = new TextView(this);
-    tv4.setTextSize(25);
+    tv4.setTextSize(22);
     tv4.setText("S2  ");
     tv4.setTypeface(typeface);
     tv4.setTextColor(Color.BLACK);
     tbrow0.addView(tv4);
     TextView tv5 = new TextView(this);
     tv5.setText("S3");
-    tv5.setTextSize(25);
+    tv5.setTextSize(22);
     tv5.setTypeface(typeface);
     tv5.setTextColor(Color.BLACK);
     tbrow0.addView(tv5);
@@ -393,42 +406,42 @@ public void uiRef()
         TextView t1v = new TextView(this);
         tbrow.setId(i);
         t1v.setText(Integer.toString(xIndex[i]));
-        t1v.setTextColor(Color.BLACK);
+        t1v.setTextColor(Color.GRAY);
         t1v.setTextSize(24);
         t1v.setTypeface(typeface);
         t1v.setGravity(Gravity.CENTER);
         tbrow.addView(t1v);
         TextView t2v = new TextView(this);
         t2v.setText(Integer.toString(xMarks[i]));
-        t2v.setTextColor(Color.BLACK);
+        t2v.setTextColor(Color.GRAY);
         t2v.setTypeface(typeface);
         t2v.setTextSize(24);
         t2v.setGravity(Gravity.CENTER);
         tbrow.addView(t2v);
         TextView t3v = new TextView(this);
         t3v.setText(Integer.toString(xMain[i]));
-        t3v.setTextColor(Color.BLACK);
+        t3v.setTextColor(Color.GRAY);
         t3v.setTypeface(typeface);
         t3v.setTextSize(24);
         t3v.setGravity(Gravity.CENTER);
         tbrow.addView(t3v);
         TextView t4v = new TextView(this);
         t4v.setText(Integer.toString(xs1[i]));
-        t4v.setTextColor(Color.BLACK);
+        t4v.setTextColor(Color.GRAY);
         t4v.setTypeface(typeface);
         t4v.setTextSize(24);
         t4v.setGravity(Gravity.CENTER);
         tbrow.addView(t4v);
         TextView t5v= new TextView(this);
         t5v.setText(Integer.toString(xs2[i]));
-        t5v.setTextColor(Color.BLACK);
+        t5v.setTextColor(Color.GRAY);
         t5v.setTypeface(typeface);
         t5v.setTextSize(24);
         t5v.setGravity(Gravity.CENTER);
         tbrow.addView(t5v);
         TextView t6v = new TextView(this);
         t6v.setText(Integer.toString(xs3[i]));
-        t6v.setTextColor(Color.BLACK);
+        t6v.setTextColor(Color.GRAY);
         t6v.setTypeface(typeface);
         t6v.setGravity(Gravity.CENTER);
         t6v.setTextSize(24);
@@ -448,6 +461,8 @@ public void uiRef()
 public void editTable(int keyValue)
 {
     tableEditButton.setVisibility(View.VISIBLE);
+    saveButton.setVisibility(View.GONE);
+    addButton.setVisibility(View.GONE);
 
     if(keyValue>4)
     {

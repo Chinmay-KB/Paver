@@ -1,14 +1,25 @@
 package surveyapp.thesmader.com.surveyapp;
 
+import android.animation.Animator;
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.transition.ChangeImageTransform;
+import android.support.transition.Slide;
+import android.support.transition.Transition;
+import android.support.transition.TransitionInflater;
+import android.support.transition.TransitionSet;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,6 +31,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -60,6 +72,7 @@ public class interimActivity extends BaseActivity {
     List<String> year=new ArrayList<>();
     List<String> semester=new ArrayList<>();
     RVAdapter adapter;
+    FloatingActionButton fab;
     private AppBarLayout mAppBarLayout;
     android.widget.Toolbar toolbar;
     CollapsingToolbarLayout ctl;
@@ -80,7 +93,7 @@ public class interimActivity extends BaseActivity {
         //setContentView(R.layout.landing_page_new);
         mDrawer.addView(contentView, 0);
         FirebaseUser users= FirebaseAuth.getInstance().getCurrentUser();
-       final TextView namev=(TextView)findViewById(R.id.display_name);
+       //final TextView namev=(TextView)findViewById(R.id.display_name);
         CollapsingToolbarLayout collapsingToolbarLayout=findViewById(R.id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle(users.getDisplayName());
         collapsingToolbarLayout.setCollapsedTitleTextColor(getResources().getColor(R.color.white));
@@ -114,6 +127,8 @@ public class interimActivity extends BaseActivity {
         adapter=new RVAdapter(this,namesList,streams,midendsems,year,semester);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        fab = findViewById(R.id.floatingActionButton4);
+        fab.setTransitionName("reveal");
     }
 
 
@@ -130,7 +145,8 @@ public class interimActivity extends BaseActivity {
     public void redirect(View view)
     {
         MainActivity ob=new MainActivity();
-        startActivity(new Intent(this, MainActivity.class));
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
         finish();
     }
 
@@ -164,4 +180,9 @@ public class interimActivity extends BaseActivity {
         Intent i = new Intent(interimActivity.this, AboutNew.class);
         startActivity(i);
     }
+
+    /*public Animator createCircularReveal(View view){
+        Animator anim;
+        return anim;
+    }*/
 }

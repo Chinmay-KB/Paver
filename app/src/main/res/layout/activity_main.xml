@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_anim"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#faebd7"
+    android:background="#8ee5ee"
     tools:context="surveyapp.thesmader.com.surveyapp.MainActivity">
 
+    <android.support.design.widget.AppBarLayout
+        android:layout_height="56dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/mainToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/app_name"
+            app:titleTextColor="@color/white"
+            app:popupTheme="@style/AppTheme.PopupOverlay"/>
+    </android.support.design.widget.AppBarLayout>
 
     <ScrollView
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -36,12 +49,14 @@
                 android:layout_margin="10dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginTop="15dp"
+                android:backgroundTint="#cbd9ef"
                 app:cardElevation="5dp"
                 app:layout_constraintBottom_toTopOf="@+id/cardView6"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.833"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="spread">
 
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/constraintLayout3"
@@ -108,6 +123,7 @@
 
             <android.support.v7.widget.CardView
                 android:id="@+id/cardView6"
+                android:backgroundTint="#cbd9ef"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_margin="10dp"
@@ -121,8 +137,8 @@
 
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/constraintLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="74dp"
+                    android:layout_width="327dp"
+                    android:layout_height="79dp"
                     android:layout_marginBottom="9dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
@@ -137,7 +153,6 @@
                         android:layout_width="286dp"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
-
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
@@ -160,8 +175,8 @@
                             android:layout_marginRight="5dp"
                             android:layout_marginStart="5dp"
                             android:layout_marginTop="5dp"
-                            android:fontFamily="@font/q"
                             android:checked="true"
+                            android:fontFamily="@font/q"
                             android:onClick="addMSListener"
                             android:text="Mid Sem"
                             android:textSize="20sp" />
@@ -187,6 +202,7 @@
 
             <android.support.v7.widget.CardView
                 android:id="@+id/cardView3"
+                android:backgroundTint="#cbd9ef"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -376,7 +392,6 @@
             </android.support.v7.widget.CardView>
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_width="52dp"
@@ -384,7 +399,10 @@
         android:clickable="true"
         android:focusable="true"
         android:onClick="dataEntry"
-        android:src="@drawable/add"
+        android:src="@drawable/forward"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_gravity="bottom|end"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.951"
@@ -393,4 +411,4 @@
         app:layout_constraintVertical_bias="0.968" />
 
 
-</android.support.constraint.ConstraintLayout>
+</android.support.design.widget.CoordinatorLayout>

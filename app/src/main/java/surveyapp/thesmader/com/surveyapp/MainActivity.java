@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     public String yearValue;
     public String semesterValue;
     public String email;
+    FloatingActionButton mFab;
     public RadioGroup stream1,stream2;
     String midendsem,stream;
     private FirebaseAuth mAuth;
@@ -51,7 +54,19 @@ public class MainActivity extends AppCompatActivity {
         stream1=(RadioGroup)findViewById(R.id.stream1);
         stream2=(RadioGroup)findViewById(R.id.stream2);
         mAuth = FirebaseAuth.getInstance();
-
+        Toolbar toolbar = findViewById(R.id.mainToolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle(R.string.app_name);
+        toolbar.setNavigationIcon(R.drawable.back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,interimActivity.class));
+                finish();
+            }
+        });
+        mFab = findViewById(R.id.floatingActionButton);
+        mFab.setTransitionName("reveal");
 
     }
     public void addMSListener(View view)

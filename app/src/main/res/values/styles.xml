@@ -9,16 +9,19 @@
         <item name="android:toolbarStyle">@color/colorPrimary</item>
     </style>
 
-    <style name="MainTheme" parent="@style/Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
+    <style name="MainTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorAccent</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <!--<item name="android:toolbarStyle">@color/colorPrimary</item>-->
     </style>
 
     <style name="editText" parent="AlertDialog.AppCompat.Light">
         <item name="android:colorControlNormal">@color/colorPrimaryDark</item>
         <item name="android:colorControlActivated">@color/colorAccent</item>
+    </style>
+
+    <style name="MyToolbar" parent="Base.Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:navigationIcon">@drawable/back</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
