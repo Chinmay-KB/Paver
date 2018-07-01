@@ -1,18 +1,15 @@
 package surveyapp.thesmader.com.surveyapp;
 
 import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -28,8 +25,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class MainActivity extends AppCompatActivity {
     public String subjectCode;
@@ -47,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         midendsem="Mid Semester";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -62,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,interimActivity.class));
+                overridePendingTransition(R.anim.l2r,R.anim.r2l);
                 finish();
             }
         });
@@ -144,7 +141,14 @@ public class MainActivity extends AppCompatActivity {
             i.putExtra("MidEnd",midendsem);
             i.putExtra("source","main");
             startActivity(i);
+            overridePendingTransition(R.anim.enter,R.anim.exit);
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(R.anim.l2r,R.anim.r2l);
     }
 }

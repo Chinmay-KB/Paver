@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
+    android:backgroundTint="@color/colorAccent"
     android:layout_margin="2dp"
     card_view:cardBackgroundColor="#fff"
     android:layout_marginEnd="8dp"
