@@ -35,6 +35,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="surveyapp.thesmader.com.surveyapp.interimActivity" />
         </activity>
+        <activity android:name=".Instructions"></activity>
     </application>
 
 </manifest>

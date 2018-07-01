@@ -162,6 +162,8 @@ public class interimActivity extends BaseActivity {
         startActivity(i);
     }
 
+    public void instOpen(MenuItem item){startActivity(new Intent(interimActivity.this, Instructions.class));}
+
     /*public Animator createCircularReveal(View view){
         Animator anim;
         return anim;

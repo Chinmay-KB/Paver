@@ -7,6 +7,13 @@
             android:onClick="aboutOpen"
             android:icon="@drawable/about"
             android:title="@string/about" />
+
+        <item
+            android:id="@+id/instructions"
+            android:onClick="instOpen"
+            android:icon="@drawable/how_to"
+            android:title="@string/instructions"/>
+
         <item
             android:id="@+id/nav_bug"
             android:onClick="bugReport"
