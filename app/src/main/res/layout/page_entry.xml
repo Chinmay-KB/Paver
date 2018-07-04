@@ -508,7 +508,7 @@
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toEndOf="@+id/extra_paper_wastage4"
                         app:layout_constraintTop_toTopOf="@+id/extra_paper_wastage4"
-                        app:layout_constraintVertical_bias="1.0" />
+                        app:layout_constraintVertical_bias="0.0" />
 
                     <EditText
                         android:id="@+id/marks_entry"
@@ -516,15 +516,16 @@
                         android:layout_height="42dp"
                         android:layout_marginBottom="23dp"
                         android:background="@color/colorPrimary"
-                        android:textColor="@color/white"
                         android:fontFamily="@font/q"
+                        android:textCursorDrawable="@null"
                         android:hint="Marks"
-                        android:textColorHint="@color/white"
                         android:inputType="number"
                         android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.093"
+                        app:layout_constraintHorizontal_bias="0.053"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.186" />
@@ -539,14 +540,15 @@
                         android:layout_marginTop="8dp"
                         android:background="@color/colorPrimary"
                         android:fontFamily="@font/q"
+                        android:textCursorDrawable="@null"
                         android:hint="Main"
-                        android:textColor="@color/white"
-                        android:textColorHint="@color/white"
                         android:inputType="number"
                         android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.329"
+                        app:layout_constraintHorizontal_bias="0.264"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.085" />
@@ -555,6 +557,7 @@
                         android:id="@+id/extra_paper_wastage"
                         android:layout_width="53dp"
                         android:layout_height="40dp"
+                        android:textCursorDrawable="@null"
                         android:layout_marginBottom="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
@@ -563,15 +566,15 @@
                         android:fontFamily="@font/q"
                         android:hint="S1"
                         android:inputType="number"
+                        android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textColorHint="@color/white"
-                        android:textAlignment="center"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.069"
+                        app:layout_constraintHorizontal_bias="0.028"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.663" />
+                        app:layout_constraintVertical_bias="0.694" />
 
                     <EditText
                         android:id="@+id/extra_paper_wastage3"
@@ -582,35 +585,36 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:background="@color/colorPrimary"
-                        android:textColor="@color/white"
-                        android:textColorHint="@color/white"
                         android:fontFamily="@font/q"
                         android:hint="S2"
                         android:inputType="number"
                         android:textAlignment="center"
+                        android:textCursorDrawable="@null"
+                        android:textColor="@color/white"
+                        android:textColorHint="@color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.33"
+                        app:layout_constraintHorizontal_bias="0.265"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.663" />
+                        app:layout_constraintVertical_bias="0.694" />
 
 
                     <android.support.design.widget.FloatingActionButton
                         android:id="@+id/floatingActionButton5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:clickable="true"
                         android:background="@color/colorPrimary"
+                        android:clickable="true"
                         android:onClick="pageAdd1"
                         android:src="@drawable/add"
                         app:fabSize="mini"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.341"
+                        app:layout_constraintHorizontal_bias="0.266"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.658" />
+                        app:layout_constraintVertical_bias="0.666" />
 
                     <android.support.design.widget.FloatingActionButton
                         android:id="@+id/floatingActionButton6"
@@ -622,10 +626,9 @@
                         app:fabSize="mini"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.569"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.663" />
+                        app:layout_constraintVertical_bias="0.666" />
 
                     <EditText
                         android:id="@+id/extra_paper_wastage4"
@@ -635,6 +638,7 @@
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
+                        android:textCursorDrawable="@null"
                         android:background="@color/colorPrimary"
                         android:ems="10"
                         android:hint="S3"
@@ -644,10 +648,27 @@
                         android:textColorHint="@color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.583"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.67" />
+                        app:layout_constraintVertical_bias="0.691" />
+
+                    <android.support.v7.widget.AppCompatButton
+                        android:id="@+id/deleteButton"
+                        android:background="@color/colorPrimary"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="0dp"
+                        android:onClick="deleteData"
+                        android:text="Delete"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@+id/tableEditButton"
+                        app:layout_constraintEnd_toStartOf="@+id/tableEditButton"
+                        app:layout_constraintHorizontal_bias="0.500"
+                        app:layout_constraintStart_toEndOf="@+id/main_paper_wastage"
+                        app:layout_constraintTop_toTopOf="@+id/tableEditButton"
+                        app:layout_constraintVertical_bias="0.500" />
 
 
                 </android.support.constraint.ConstraintLayout>
@@ -657,13 +678,12 @@
                 android:id="@+id/cardView4"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="75dp"
                 android:backgroundTint="@color/colorAccent"
                 app:cardBackgroundColor="@color/cardview_light_background"
-                app:cardElevation="8dp"
-                android:layout_below="@id/textView10">
+                app:cardElevation="8dp">
 
                 <TableLayout
                     android:id="@+id/table_layout"
@@ -1103,6 +1123,28 @@
                 android:textColor="#000000"
                 android:textSize="19sp"
                 app:srcCompat="@android:drawable/ic_menu_save" />
+
+            <TextView
+                android:id="@+id/inputCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textView10"
+                android:layout_marginTop="-8dp"
+                android:text="Inputs-"
+
+                android:textColor="#fff"/>
+
+            <TextView
+                android:id="@+id/howMany"
+                android:textColor="#fff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/textView10"
+                android:layout_marginStart="51dp"
+                android:layout_marginTop="-8dp"
+                android:text="0" />
 
 
         </RelativeLayout>

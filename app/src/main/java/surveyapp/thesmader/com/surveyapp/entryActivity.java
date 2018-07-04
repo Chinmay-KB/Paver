@@ -46,6 +46,7 @@ public class entryActivity extends AppCompatActivity implements View.OnClickList
     public static int sup1;
     public static int sup2;
     public static int sup3;
+    public TextView inputCount;
 
     EditText marks;
     EditText paper1;
@@ -58,7 +59,7 @@ public class entryActivity extends AppCompatActivity implements View.OnClickList
     android.support.v7.widget.AppCompatButton tableEditButton, addButton, saveButton;
     public int index;
     List<String> a;
-    int xIndex[],xMarks[],xMain[],xs1[],xs2[],xs3[];
+    String xIndex[],xMarks[],xMain[],xs1[],xs2[],xs3[];
     public String[] data;
     public String[] keyOfData;
     private TableLayout table;
@@ -77,18 +78,22 @@ public class entryActivity extends AppCompatActivity implements View.OnClickList
          this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
         super.onCreate(savedInstanceState);
         table=(TableLayout)findViewById(R.id.table_layout);
-        xMarks=new int[5];
-        xMain=new int[5];
-        xIndex=new int[5];
-        xs1=new int[5];
-        xs2=new int[5];
-        xs3=new int[5];
+        xMarks=new String[5];
+        xMain=new String[5];
+        xIndex=new String[5];
+        xs1=new String[5];
+        xs2=new String[5];
+        xs3=new String[5];
+
+
+
 
         for(int i=0;i<4;i++)
         {
-            xs1[i]=0;
-            xs2[i]=0;
-            xs3[1]=0;
+            xIndex[i]="0";
+            xs1[i]="0";
+            xs2[i]="0";
+            xs3[1]="0";
         }
         setContentView(R.layout.page_entry);
         tableEditButton= (AppCompatButton) findViewById(R.id.tableEditButton);
@@ -107,6 +112,7 @@ public class entryActivity extends AppCompatActivity implements View.OnClickList
         stream=i.getStringExtra("stream");
         midend=i.getStringExtra("MidEnd");
         TextView subjectDisplay=(TextView) findViewById(R.id.textView10);
+         inputCount=(TextView)findViewById(R.id.howMany);
         subjectDisplay.setText(scode);
 
         s2=(EditText)findViewById(R.id.extra_paper_wastage3);
@@ -118,6 +124,7 @@ public class entryActivity extends AppCompatActivity implements View.OnClickList
         keyOfData=new String[5];
         notebookRef=db.collection(scode);
         index=0;
+        howManyAdditions=0;
 
          RadioButton r1=(RadioButton)findViewById(R.id.btech);
          RadioButton r2=(RadioButton)findViewById(R.id.ma);
@@ -129,24 +136,24 @@ public class entryActivity extends AppCompatActivity implements View.OnClickList
          RadioButton r8=(RadioButton)findViewById(R.id.mres);
          RadioButton r9=(RadioButton)findViewById(R.id.phd);
 
-    if (stream.equals("B.Tech"))
-        r1.setChecked(true);
-    if (stream.equals("M.A"))
-        r2.setChecked(true);
-    if (stream.equals("M.B.A"))
-        r3.setChecked(true);
-    if (stream.equals("B.Arch"))
-        r4.setChecked(true);
-    if (stream.equals("M.Sc"))
-        r5.setChecked(true);
-    if (stream.equals("Integrated M.Sc"))
-        r7.setChecked(true);
-    if (stream.equals("M.Tech(Res)"))
-        r8.setChecked(true);
-    if (stream.equals("Dual Degree"))
-        r6.setChecked(true);
-    if (stream.equals("Ph.D"))
-        r9.setChecked(true);
+         if (stream.equals("B.Tech"))
+             r1.setChecked(true);
+         if (stream.equals("M.A"))
+             r2.setChecked(true);
+         if (stream.equals("M.B.A"))
+             r3.setChecked(true);
+         if (stream.equals("B.Arch"))
+             r4.setChecked(true);
+         if (stream.equals("M.Sc"))
+             r5.setChecked(true);
+         if (stream.equals("Integrated M.Sc"))
+             r7.setChecked(true);
+         if (stream.equals("M.Tech(Res)"))
+             r8.setChecked(true);
+         if (stream.equals("Dual Degree"))
+             r6.setChecked(true);
+         if (stream.equals("Ph.D"))
+             r9.setChecked(true);
 
          uiRef();
 
@@ -162,18 +169,18 @@ public class entryActivity extends AppCompatActivity implements View.OnClickList
                 sup2 = Integer.parseInt(paper3.getText().toString());
             if (!paper4.getText().toString().isEmpty())
                 sup3 = Integer.parseInt(paper4.getText().toString());
-            xMarks[editIndex]=marksValue;
-            xMain[editIndex]=mainValue;
-            xs1[editIndex]=sup1;
-            xs2[editIndex]=sup2;
-            xs3[editIndex]=sup3;
+            xMarks[editIndex]=Integer.toString(marksValue);
+            xMain[editIndex]=Integer.toString(mainValue);
+            xs1[editIndex]=Integer.toString(sup1);
+            xs2[editIndex]=Integer.toString(sup2);
+            xs3[editIndex]=Integer.toString(sup3);
         }
         DocumentReference tEdit=db.collection(scode).document(keyOfData[editIndex]);
         tEdit.update("marks",marksValue);
-        tEdit.update("Main sheet wasted",mainValue);
-        tEdit.update("Supplementary 1",sup1);
-        tEdit.update("Supplementary 2",sup2);
-        tEdit.update("Supplementary 3",sup3)
+        tEdit.update("Main",mainValue);
+        tEdit.update("S1",sup1);
+        tEdit.update("S2",sup2);
+        tEdit.update("S3",sup3)
                 .addOnSuccessListener(new OnSuccessListener<Void>(){
 
                     @Override
@@ -182,14 +189,18 @@ public class entryActivity extends AppCompatActivity implements View.OnClickList
                     }
                 });
         tableEditButton.setVisibility(View.GONE);
-        s3.setText("");
         s2.setText("");
+        s3.setText("");
+        sup2 = 0;
+        sup3 = 0;
         s3.setVisibility(View.GONE);
         s2.setVisibility(View.GONE);
         bs2.setVisibility(View.VISIBLE);
         bs3.setVisibility(View.VISIBLE);
         saveButton.setVisibility(View.VISIBLE);
         addButton.setVisibility(View.VISIBLE);
+        Button deleteButton=(Button)findViewById(R.id.deleteButton);
+        deleteButton.setVisibility(View.GONE);
         uiRef();
 
     }
@@ -199,6 +210,7 @@ public class entryActivity extends AppCompatActivity implements View.OnClickList
 
 public void onClick(View view) {
 
+         howManyAdditions++;
     marks = (EditText) findViewById(R.id.marks_entry);
 
     paper1 = (EditText) findViewById(R.id.main_paper_wastage);
@@ -219,22 +231,21 @@ public void onClick(View view) {
         if (!paper4.getText().toString().isEmpty())
             sup3 = Integer.parseInt(paper4.getText().toString());
 
-        user.put("Year", yearValue);
-        user.put("Semester", semesterValue);
+        user.put("Year", yrCorrespond(yearValue));
+        user.put("Semester", semCorrespond(semesterValue));
+        user.put("Stream", correspond(stream));
+        user.put("Mid or end sem", meCorrespond(midend));
         user.put("marks", marksValue);
-        user.put("Main sheet wasted", mainValue);
-        user.put("Supplementary 1", sup1);
-        user.put("Stream", stream);
-        user.put("Mid or end sem", midend);
+        user.put("Main", mainValue);
+        user.put("S1", sup1);
         if (paper3.getText().toString().isEmpty())
-         user.put("Supplementary 2", 0);
+         user.put("S2", 0);
         else
-            user.put("Supplementary 2", sup2);
+            user.put("S2", sup2);
         if (paper4.getText().toString().isEmpty())
-            user.put("Supplementary 3", 0);
+            user.put("S3", 0);
         else
-            user.put("Supplementary 3", sup3);
-        user.put("Index", index);
+            user.put("S3", sup3);
         db.collection(scode)
                 .add(user)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -242,6 +253,9 @@ public void onClick(View view) {
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d("FirestoreDemo", "DocumentSnapshot added with ID " + documentReference.getId());
                         updateUI(documentReference.getId().toString()); // Pass on values over here
+
+                        sup2=0;
+                        sup3=0;
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -266,12 +280,41 @@ public void onClick(View view) {
     bs3.setVisibility(View.VISIBLE);
 
 }
+    public String semCorrespond(String s)
+    {
+        if(s.equals("Autumn Semester"))
+            return "1";
+        else if(s.equals("Spring Semester"))
+            return "0";
+        else return "2";
+    }
+
+    public String meCorrespond(String s)
+    {
+        if(s.equals("End Sem"))
+            return "1";
+        else return "0";
+    }
+    public String yrCorrespond(String s)
+    {
+        if(s.equals("1st"))
+            return "1";
+        else if(s.equals("2nd"))
+            return "2";
+        else if(s.equals("3rd"))
+            return "3";
+        else if(s.equals("4th"))
+            return "4";
+        else return "5";
+
+
+    }
     public void streamChoice1(View view)
     {
 
        int selectedId=stream1.getCheckedRadioButtonId();
        Button rb1=(Button)findViewById(selectedId);
-       stream=rb1.getText().toString();
+       stream=correspond(rb1.getText().toString());
         if(stream2.getCheckedRadioButtonId()!=-1)
        stream2.clearCheck();
     }
@@ -279,9 +322,23 @@ public void onClick(View view) {
     {
         int selectedId=stream2.getCheckedRadioButtonId();
         Button rb2=(Button)findViewById(selectedId);
-        stream=rb2.getText().toString();
+        stream=correspond(rb2.getText().toString());
         if(stream1.getCheckedRadioButtonId()!=-1)
        stream1.clearCheck();
+    }
+    public String correspond(String a)
+    {
+        if (stream.equals("B.Tech"))
+            return "0";
+        else if (stream.equals("M.A"))return "1";
+        else if (stream.equals("M.B.A"))return "2";
+        else if (stream.equals("B.Arch"))return "3";
+        else if (stream.equals("M.Sc"))return "4";
+        else if (stream.equals("Integrated M.Sc"))return "5";
+        else if (stream.equals("M.Tech(Res)"))return "6";
+        else if (stream.equals("Dual Degree"))return "7";
+        else if (stream.equals("Ph.D"))return "8";
+        else return "-1";
     }
 
 public void savingData(View view)
@@ -293,12 +350,12 @@ public void updateUI(String key)
     if(index<5)
     {
        keyOfData[index]=key;
-        xIndex[index]=index+1;
-        xMarks[index]=marksValue;
-        xMain[index]=mainValue;
-        xs1[index]=sup1;
-        xs2[index]=sup2;
-        xs3[index]=sup3;
+        xIndex[index]=Integer.toString(index+1);
+        xMarks[index]=Integer.toString(marksValue);
+        xMain[index]=Integer.toString(mainValue);
+        xs1[index]=Integer.toString(sup1);
+        xs2[index]=Integer.toString(sup2);
+        xs3[index]=Integer.toString(sup3);
     }
     else{
         data[0]=data[1];
@@ -320,12 +377,12 @@ public void updateUI(String key)
         }
 
         keyOfData[4]=key;
-        xIndex[4]=index+1;
-        xMarks[4]=marksValue;
-        xMain[4]=mainValue;
-        xs1[4]=sup1;
-        xs2[4]=sup2;
-        xs3[4]=sup3;
+        xIndex[4]=Integer.toString(index+1);
+        xMarks[4]=Integer.toString(marksValue);
+        xMain[4]=Integer.toString(mainValue);
+        xs1[4]=Integer.toString(sup1);
+        xs2[4]=Integer.toString(sup2);
+        xs3[4]=Integer.toString(sup3);
 
 
 
@@ -333,46 +390,54 @@ public void updateUI(String key)
     index++;
     uiRef();
 }
+    TableLayout stk;
+    TableRow tbrow;
 
-public void uiRef()
+    public int howManyAdditions;
+    public void uiRef()
 {
-    TableLayout stk = (TableLayout) findViewById(R.id.table_layout);
+
+    inputCount.setText(Integer.toString(howManyAdditions));
+    stk = (TableLayout) findViewById(R.id.table_layout);
     stk.removeAllViews();
     Typeface typeface = ResourcesCompat.getFont(this, R.font.q);
-    stk.setColumnStretchable(6,true);
+    stk.setColumnStretchable(5,true);
     TableRow tbrow0 = new TableRow(this);
-    TextView tv0 = new TextView(this);
+   /* TextView tv0 = new TextView(this);
     tv0.setTypeface(typeface);
     tv0.setText(" #   ");
     tv0.setTextSize(22);
     tv0.setTextColor(Color.BLACK);
     tbrow0.addView(tv0);
+    */
+   tbrow0.setGravity(View.TEXT_ALIGNMENT_CENTER);
+   stk.setStretchAllColumns(true);
     TextView tv1 = new TextView(this);
-    tv1.setText("   Marks   ");
+    tv1.setText("Marks");
     tv1.setTypeface(typeface);
     tv1.setTextSize(22);
     tv1.setTextColor(Color.BLACK);
     tbrow0.addView(tv1);
     TextView tv2 = new TextView(this);
-    tv2.setText("Main   ");
+    tv2.setText("Main ");
     tv2.setTextSize(22);
     tv2.setTypeface(typeface);
     tv2.setTextColor(Color.BLACK);
     tbrow0.addView(tv2);
     TextView tv3 = new TextView(this);
-    tv3.setText("S1  ");
+    tv3.setText(" S1  ");
     tv3.setTextColor(Color.BLACK);
     tv3.setTextSize(22);
     tv3.setTypeface(typeface);
     tbrow0.addView(tv3);
     TextView tv4 = new TextView(this);
     tv4.setTextSize(22);
-    tv4.setText("S2  ");
+    tv4.setText("  S2 ");
     tv4.setTypeface(typeface);
     tv4.setTextColor(Color.BLACK);
     tbrow0.addView(tv4);
     TextView tv5 = new TextView(this);
-    tv5.setText("S3");
+    tv5.setText(" S3  ");
     tv5.setTextSize(22);
     tv5.setTypeface(typeface);
     tv5.setTextColor(Color.BLACK);
@@ -384,45 +449,50 @@ public void uiRef()
     else
         limit=index;
     for (int i = 0; i <limit; i++) {
-        TableRow tbrow = new TableRow(this);
+        tbrow = new TableRow(this);
+        tbrow.setGravity(View.TEXT_ALIGNMENT_CENTER);
         TextView t1v = new TextView(this);
         tbrow.setId(i);
-        t1v.setText(Integer.toString(xIndex[i]));
+        if(xIndex[i].equals("-")) {
+
+            continue;
+        }
+        /*t1v.setText(Integer.toString(++howManyAdditions));
         t1v.setTextColor(Color.GRAY);
         t1v.setTextSize(24);
         t1v.setTypeface(typeface);
         t1v.setGravity(Gravity.CENTER);
-        tbrow.addView(t1v);
+        tbrow.addView(t1v); */
         TextView t2v = new TextView(this);
-        t2v.setText(Integer.toString(xMarks[i]));
+        t2v.setText(xMarks[i]);
         t2v.setTextColor(Color.GRAY);
         t2v.setTypeface(typeface);
         t2v.setTextSize(24);
         t2v.setGravity(Gravity.CENTER);
         tbrow.addView(t2v);
         TextView t3v = new TextView(this);
-        t3v.setText(Integer.toString(xMain[i]));
+        t3v.setText(xMain[i]);
         t3v.setTextColor(Color.GRAY);
         t3v.setTypeface(typeface);
         t3v.setTextSize(24);
         t3v.setGravity(Gravity.CENTER);
         tbrow.addView(t3v);
         TextView t4v = new TextView(this);
-        t4v.setText(Integer.toString(xs1[i]));
+        t4v.setText(xs1[i]);
         t4v.setTextColor(Color.GRAY);
         t4v.setTypeface(typeface);
         t4v.setTextSize(24);
         t4v.setGravity(Gravity.CENTER);
         tbrow.addView(t4v);
         TextView t5v= new TextView(this);
-        t5v.setText(Integer.toString(xs2[i]));
+        t5v.setText(xs2[i]);
         t5v.setTextColor(Color.GRAY);
         t5v.setTypeface(typeface);
         t5v.setTextSize(24);
         t5v.setGravity(Gravity.CENTER);
         tbrow.addView(t5v);
         TextView t6v = new TextView(this);
-        t6v.setText(Integer.toString(xs3[i]));
+        t6v.setText(xs3[i]);
         t6v.setTextColor(Color.GRAY);
         t6v.setTypeface(typeface);
         t6v.setGravity(Gravity.CENTER);
@@ -440,24 +510,70 @@ public void uiRef()
         });
     }
 }
+int valForDelete;
+     public void deleteData(View view)
+     {
+         db.collection(scode).document(keyOfData[valForDelete])
+                 .delete()
+                 .addOnSuccessListener(new OnSuccessListener<Void>() {
+                     @Override
+                     public void onSuccess(Void aVoid) {
+                         Toast.makeText(entryActivity.this, "Successfully deleted", Toast.LENGTH_SHORT).show();
+                     }
+                 })
+                 .addOnFailureListener(new OnFailureListener() {
+                     @Override
+                     public void onFailure(@NonNull Exception e) {
+                         Toast.makeText(entryActivity.this, "Something went wrong while deleting!", Toast.LENGTH_SHORT).show();
+                     }
+                 });
+
+         tableEditButton.setVisibility(View.GONE);
+         Button deleteButton=(Button)findViewById(R.id.deleteButton);
+         deleteButton.setVisibility(View.GONE);
+         addButton.setVisibility(View.VISIBLE);
+         saveButton.setVisibility(View.VISIBLE);
+         howManyAdditions--;
+         shiftArrays(valForDelete);
+     }
+     public void shiftArrays(int k)
+     {
+         xIndex[k]="-";
+         xMarks[k]="-";
+         xMain[k]="-";
+         xs1[k]="-";
+         xs2[k]="-";
+         xs3[k]="-";
+         uiRef();
+
+     }
+
+
 public void editTable(int keyValue)
 {
+    valForDelete=keyValue;
     tableEditButton.setVisibility(View.VISIBLE);
+    bs2.setVisibility(View.GONE);
+    bs3.setVisibility(View.GONE);
+    s2.setVisibility(View.VISIBLE);
+    s3.setVisibility(View.VISIBLE);
     saveButton.setVisibility(View.GONE);
     addButton.setVisibility(View.GONE);
+    Button deleteButton=(Button)findViewById(R.id.deleteButton);
+    deleteButton.setVisibility(View.VISIBLE);
 
     if(keyValue>4)
     {
-        keyValue=4-xIndex[4]-keyValue;
+        keyValue=4-Integer.parseInt(xIndex[4])-keyValue;
         editIndex=keyValue;
     }
     else editIndex=keyValue;
 
-    marks.setText(Integer.toString(xMarks[keyValue]),TextView.BufferType.EDITABLE);
-    paper1.setText(Integer.toString(xMain[keyValue]),TextView.BufferType.EDITABLE);
-    paper2.setText(Integer.toString(xs1[keyValue]),TextView.BufferType.EDITABLE);
-    paper3.setText(Integer.toString(xs2[keyValue]),TextView.BufferType.EDITABLE);
-    paper4.setText(Integer.toString(xs3[keyValue]),TextView.BufferType.EDITABLE);
+    marks.setText(xMarks[keyValue],TextView.BufferType.EDITABLE);
+    paper1.setText(xMain[keyValue],TextView.BufferType.EDITABLE);
+    paper2.setText(xs1[keyValue],TextView.BufferType.EDITABLE);
+    paper3.setText(xs2[keyValue],TextView.BufferType.EDITABLE);
+    paper4.setText(xs3[keyValue],TextView.BufferType.EDITABLE);
 
 }
 public void pageAdd2(View view)
@@ -465,12 +581,14 @@ public void pageAdd2(View view)
 
         bs3.setVisibility(View.GONE);
         s3.setVisibility(View.VISIBLE);
+        s3.requestFocus();
     }
 public void pageAdd1(View view)
 {
 
     bs2.setVisibility(View.GONE);
     s2.setVisibility(View.VISIBLE);
+    s2.requestFocus();
 }
 public void onBackPressed(View view)
 {

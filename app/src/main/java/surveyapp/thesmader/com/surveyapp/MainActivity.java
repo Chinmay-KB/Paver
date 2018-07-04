@@ -38,6 +38,22 @@ public class MainActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Map<String, Object> user = new HashMap<>();
 
+    public String correspond(String a)
+    {
+        if (stream.equals("B.Tech"))
+            return "0";
+        else if (stream.equals("M.A"))return "1";
+        else if (stream.equals("M.B.A"))return "2";
+        else if (stream.equals("B.Arch"))return "3";
+        else if (stream.equals("M.Sc"))return "4";
+        else if (stream.equals("Integrated M.Sc"))return "5";
+        else if (stream.equals("M.Tech(Res)"))return "6";
+        else if (stream.equals("Dual Degree"))return "7";
+        else if (stream.equals("Ph.D"))return "8";
+        else return "-1";
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -78,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
     public void streamChoice1(View view)
     {
 
-       int selectedId=stream1.getCheckedRadioButtonId();
+        int selectedId=stream1.getCheckedRadioButtonId();
         RadioButton rb=findViewById(selectedId);
         stream=rb.getText().toString();
         stream2.clearCheck();
@@ -96,6 +112,35 @@ public class MainActivity extends AppCompatActivity {
                 rb.getText(), Toast.LENGTH_SHORT).show();
     }
 
+    public String semCorrespond(String s)
+    {
+        if(s.equals("Autumn Semester"))
+            return "1";
+        else if(s.equals("Spring Semester"))
+            return "0";
+        else return "2";
+    }
+
+    public String meCorrespond(String s)
+    {
+        if(s.equals("End Sem"))
+            return "1";
+            else return "0";
+    }
+    public String yrCorrespond(String s)
+    {
+        if(s.equals("1st"))
+            return "1";
+        else if(s.equals("2nd"))
+            return "2";
+        else if(s.equals("3rd"))
+            return "3";
+        else if(s.equals("4th"))
+            return "4";
+        else return "5";
+
+
+    }
 
     public void dataEntry(View view) {
         entryActivity x = new entryActivity();
@@ -114,10 +159,10 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Please provide appropriate input", Toast.LENGTH_SHORT).show();
         else {
             user.put("Subject Code",subjectCode.toUpperCase());
-            user.put("Year",yearValue);
-            user.put("Semester",semesterValue);
-            user.put("Stream",stream);
-            user.put("Mid or End sem",midendsem);
+            user.put("Year",yrCorrespond(yearValue));
+            user.put("Semester",semCorrespond(semCorrespond(semesterValue)));
+            user.put("Stream",correspond(stream));
+            user.put("Mid or End sem",meCorrespond(midendsem));
             db.collection(users.getEmail())
                     .add(user)
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
