@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -23,6 +24,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     public RadioGroup stream1,stream2;
     String midendsem,stream;
     private FirebaseAuth mAuth;
+    private String examYear;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Map<String, Object> user = new HashMap<>();
 
@@ -62,6 +66,19 @@ public class MainActivity extends AppCompatActivity {
         midendsem="Mid Semester";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ArrayList<String> years = new ArrayList<String>();
+        int thisYear = Calendar.getInstance().get(Calendar.YEAR);
+        years.add("Exam year");
+        for (int i = thisYear-5; i <= thisYear; i++) {
+            years.add(Integer.toString(i));
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, years);
+
+        Spinner spinYear = (Spinner)findViewById(R.id.exam_year_input);
+        spinYear.setAdapter(adapter);
+
+
         stream="B.Tech";
         stream1=(RadioGroup)findViewById(R.id.stream1);
         stream2=(RadioGroup)findViewById(R.id.stream2);
@@ -151,11 +168,13 @@ public class MainActivity extends AppCompatActivity {
         yearValue = year_select.getSelectedItem().toString();
         Spinner semester_select = (Spinner) findViewById(R.id.semester_select);
         semesterValue = semester_select.getSelectedItem().toString();
+        Spinner spinYear=(Spinner)findViewById(R.id.exam_year_input);
+        examYear=spinYear.getSelectedItem().toString();
         x.scode = subjectCode;
         x.semesterValue = semesterValue;
         x.yearValue = yearValue;
         FirebaseUser users=FirebaseAuth.getInstance().getCurrentUser();;
-        if (yearValue.equals("Choose Year") || semesterValue.equals("Choose Semester") || midendsem==null || stream==null)
+        if (yearValue.equals("Choose Year") || semesterValue.equals("Choose Semester") || midendsem==null || stream==null || examYear.equals("Exam year"))
             Toast.makeText(getApplicationContext(), "Please provide appropriate input", Toast.LENGTH_SHORT).show();
         else {
             user.put("Subject Code",subjectCode.toUpperCase());
@@ -163,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
             user.put("Semester",semCorrespond(semCorrespond(semesterValue)));
             user.put("Stream",correspond(stream));
             user.put("Mid or End sem",meCorrespond(midendsem));
+            user.put("Year of Exam",examYear);
             db.collection(users.getEmail())
                     .add(user)
                     .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -185,6 +205,7 @@ public class MainActivity extends AppCompatActivity {
             i.putExtra("stream",stream);
             i.putExtra("MidEnd",midendsem);
             i.putExtra("source","main");
+            i.putExtra("examYear",examYear);
             startActivity(i);
             overridePendingTransition(R.anim.enter,R.anim.exit);
         }

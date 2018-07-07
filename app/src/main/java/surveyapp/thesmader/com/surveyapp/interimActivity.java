@@ -95,7 +95,6 @@ public class interimActivity extends BaseActivity {
                                 streams.add(doc.getString("Stream"));
                                 year.add(doc.getString("Year"));
                                 semester.add(doc.getString("Semester"));
-
                             }
                         }
 

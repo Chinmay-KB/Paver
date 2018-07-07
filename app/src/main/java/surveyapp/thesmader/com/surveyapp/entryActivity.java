@@ -27,8 +27,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.ServerTimestamp;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +49,11 @@ public class entryActivity extends AppCompatActivity implements View.OnClickList
     public static int sup1;
     public static int sup2;
     public static int sup3;
+    public static int examYear;
     public TextView inputCount;
+
+    @ServerTimestamp
+    Date time;
 
     EditText marks;
     EditText paper1;
@@ -111,6 +118,7 @@ public class entryActivity extends AppCompatActivity implements View.OnClickList
         semesterValue=i.getStringExtra("semester");
         stream=i.getStringExtra("stream");
         midend=i.getStringExtra("MidEnd");
+        examYear=Integer.parseInt(i.getStringExtra("examYear"));
         TextView subjectDisplay=(TextView) findViewById(R.id.textView10);
          inputCount=(TextView)findViewById(R.id.howMany);
         subjectDisplay.setText(scode);
@@ -232,12 +240,14 @@ public void onClick(View view) {
             sup3 = Integer.parseInt(paper4.getText().toString());
 
         user.put("Year", yrCorrespond(yearValue));
+        user.put("Exam Year",examYear);
         user.put("Semester", semCorrespond(semesterValue));
         user.put("Stream", correspond(stream));
         user.put("Mid or end sem", meCorrespond(midend));
         user.put("marks", marksValue);
         user.put("Main", mainValue);
         user.put("S1", sup1);
+        //user.put("timeStamp", FieldValue.serverTimestamp());
         if (paper3.getText().toString().isEmpty())
          user.put("S2", 0);
         else
