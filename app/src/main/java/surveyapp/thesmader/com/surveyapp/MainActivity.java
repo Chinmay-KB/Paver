@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
     {
         if(s.equals("End Sem"))
             return "1";
-            else return "0";
+        else return "0";
     }
     public String yrCorrespond(String s)
     {

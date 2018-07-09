@@ -42,6 +42,7 @@ public class interimActivity extends BaseActivity {
     List<String> midendsems=new ArrayList<>();
     List<String> year=new ArrayList<>();
     List<String> semester=new ArrayList<>();
+    List<String> examYear=new ArrayList<>();
     RVAdapter adapter;
     FloatingActionButton fab;
     private AppBarLayout mAppBarLayout;
@@ -50,21 +51,11 @@ public class interimActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*toolbar = findViewById(R.id.toolbar_1);
-        toolbar.setNavigationIcon(R.drawable.ham);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mDrawer.openDrawer(Gravity.START);
-            }
-        });*/
         mAuth = FirebaseAuth.getInstance();
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.landing_page_new, null, false);
-        //setContentView(R.layout.landing_page_new);
         mDrawer.addView(contentView, 0);
         FirebaseUser users= FirebaseAuth.getInstance().getCurrentUser();
-       //final TextView namev=(TextView)findViewById(R.id.display_name);
         CollapsingToolbarLayout collapsingToolbarLayout=findViewById(R.id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle(users.getDisplayName());
         collapsingToolbarLayout.setCollapsedTitleTextColor(getResources().getColor(R.color.white));
@@ -95,6 +86,7 @@ public class interimActivity extends BaseActivity {
                                 streams.add(doc.getString("Stream"));
                                 year.add(doc.getString("Year"));
                                 semester.add(doc.getString("Semester"));
+                                examYear.add(doc.getString("Year of Exam"));
                             }
                         }
 
@@ -103,7 +95,7 @@ public class interimActivity extends BaseActivity {
                     }
                 });
         RecyclerView recyclerView=findViewById(R.id.lv);
-        adapter=new RVAdapter(this,namesList,streams,midendsems,year,semester);
+        adapter=new RVAdapter(this,namesList,streams,midendsems,year,semester,examYear);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         fab = findViewById(R.id.floatingActionButton4);
