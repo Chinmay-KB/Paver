@@ -73,11 +73,11 @@ public class entryActivity extends AppCompatActivity implements View.OnClickList
     public RadioGroup stream1,stream2;
 
     String stream,midend;
-    FloatingActionButton bs3,bs2;
+    FloatingActionButton bs3,bs2,bs1;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Map<String, Object> user = new HashMap<>();
     private CollectionReference notebookRef;
-    EditText s2,s3;
+    EditText s2,s3,s1;
      @Override
     protected void onCreate(Bundle savedInstanceState) {
          requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -111,6 +111,7 @@ public class entryActivity extends AppCompatActivity implements View.OnClickList
          stream2=(RadioGroup)findViewById(R.id.stream2);
          bs3=findViewById(R.id.floatingActionButton6);
          bs2=findViewById(R.id.floatingActionButton5);
+         bs1 = findViewById(R.id.s1_fab);
         Intent i=getIntent();
         scode=i.getStringExtra("subject");
 
@@ -122,9 +123,10 @@ public class entryActivity extends AppCompatActivity implements View.OnClickList
         TextView subjectDisplay=(TextView) findViewById(R.id.textView10);
          inputCount=(TextView)findViewById(R.id.howMany);
         subjectDisplay.setText(scode);
-
+        s1 = findViewById(R.id.extra_paper_wastage);
         s2=(EditText)findViewById(R.id.extra_paper_wastage3);
         s3=(EditText)findViewById(R.id.extra_paper_wastage4);
+        s1.setVisibility(View.GONE);
         s2.setVisibility(View.GONE);
         s3.setVisibility(View.GONE);
 
@@ -168,11 +170,13 @@ public class entryActivity extends AppCompatActivity implements View.OnClickList
     }
 
     public void editTableSave(View view) {
-        if (!marks.getText().toString().isEmpty() && !paper1.getText().toString().isEmpty() && !paper2.getText().toString().isEmpty())// &&  && !paper4.getText().toString().isEmpty()) {
+        if (!marks.getText().toString().isEmpty() && !paper1.getText().toString().isEmpty())// && !paper2.getText().toString().isEmpty())// &&  && !paper4.getText().toString().isEmpty()) {
         {
             marksValue = Integer.parseInt(marks.getText().toString());
             mainValue = Integer.parseInt(paper1.getText().toString());
-            sup1 = Integer.parseInt(paper2.getText().toString());
+            if (!paper2.getText().toString().isEmpty())
+                sup1 = Integer.parseInt(paper2.getText().toString());
+            //sup1 = Integer.parseInt(paper2.getText().toString());
             if (!paper3.getText().toString().isEmpty())
                 sup2 = Integer.parseInt(paper3.getText().toString());
             if (!paper4.getText().toString().isEmpty())
@@ -203,6 +207,8 @@ public class entryActivity extends AppCompatActivity implements View.OnClickList
         sup3 = 0;
         s3.setVisibility(View.GONE);
         s2.setVisibility(View.GONE);
+        s1.setVisibility(View.GONE);
+        bs1.setVisibility(View.VISIBLE);
         bs2.setVisibility(View.VISIBLE);
         bs3.setVisibility(View.VISIBLE);
         saveButton.setVisibility(View.VISIBLE);
@@ -229,10 +235,11 @@ public void onClick(View view) {
 
     paper4 = (EditText) findViewById(R.id.extra_paper_wastage4);
     String key;
-    if (!marks.getText().toString().isEmpty() && !paper1.getText().toString().isEmpty() && !paper2.getText().toString().isEmpty())// &&  && !paper4.getText().toString().isEmpty()) {
+    if (!marks.getText().toString().isEmpty() && !paper1.getText().toString().isEmpty() )//&& !paper2.getText().toString().isEmpty())// &&  && !paper4.getText().toString().isEmpty()) {
     {
         marksValue = Integer.parseInt(marks.getText().toString());
         mainValue = Integer.parseInt(paper1.getText().toString());
+        if (!paper2.getText().toString().isEmpty())
         sup1 = Integer.parseInt(paper2.getText().toString());
         if (!paper3.getText().toString().isEmpty())
             sup2 = Integer.parseInt(paper3.getText().toString());
@@ -243,10 +250,14 @@ public void onClick(View view) {
         user.put("Exam Year",examYear);
         user.put("Semester", semCorrespond(semesterValue));
         user.put("Stream", correspond(stream));
+        Toast.makeText(entryActivity.this,stream,Toast.LENGTH_SHORT);
         user.put("Mid or end sem", meCorrespond(midend));
         user.put("marks", marksValue);
         user.put("Main", mainValue);
-        user.put("S1", sup1);
+        if(paper2.getText().toString().isEmpty())
+        user.put("S1", 0);
+        else
+            user.put("S1",sup1);
         //user.put("timeStamp", FieldValue.serverTimestamp());
         if (paper3.getText().toString().isEmpty())
          user.put("S2", 0);
@@ -263,7 +274,7 @@ public void onClick(View view) {
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d("FirestoreDemo", "DocumentSnapshot added with ID " + documentReference.getId());
                         updateUI(documentReference.getId().toString()); // Pass on values over here
-
+                        sup1=0;
                         sup2=0;
                         sup3=0;
                     }
@@ -284,8 +295,10 @@ public void onClick(View view) {
     } else
         Toast.makeText(getApplicationContext(), "Don't leave the fields blank", Toast.LENGTH_SHORT).show();
     // setContentView(R.layout.page_entry);
+    s1.setVisibility(View.GONE);
     s2.setVisibility(View.GONE);
     s3.setVisibility(View.GONE);
+    bs1.setVisibility(View.VISIBLE);
     bs2.setVisibility(View.VISIBLE);
     bs3.setVisibility(View.VISIBLE);
 
@@ -338,16 +351,16 @@ public void onClick(View view) {
     }
     public String correspond(String a)
     {
-        if (stream.equals("B.Tech"))
+        if (a.equals("B.Tech"))
             return "0";
-        else if (stream.equals("M.A"))return "1";
-        else if (stream.equals("M.B.A"))return "2";
-        else if (stream.equals("B.Arch"))return "3";
-        else if (stream.equals("M.Sc"))return "4";
-        else if (stream.equals("Integrated M.Sc"))return "5";
-        else if (stream.equals("M.Tech(Res)"))return "6";
-        else if (stream.equals("Dual Degree"))return "7";
-        else if (stream.equals("Ph.D"))return "8";
+        else if (a.equals("M.A"))return "1";
+        else if (a.equals("M.B.A"))return "2";
+        else if (a.equals("B.Arch"))return "3";
+        else if (a.equals("M.Sc"))return "4";
+        else if (a.equals("Integrated M.Sc"))return "5";
+        else if (a.equals("M.Tech(Res)"))return "6";
+        else if (a.equals("Dual Degree"))return "7";
+        else if (a.equals("Ph.D"))return "8";
         else return "-1";
     }
 
@@ -541,6 +554,19 @@ int valForDelete;
          tableEditButton.setVisibility(View.GONE);
          Button deleteButton=(Button)findViewById(R.id.deleteButton);
          deleteButton.setVisibility(View.GONE);
+         paper1.setText("");
+         paper2.setText("");
+         paper3.setText("");
+         paper4.setText("");
+         marks.setText("");
+
+         s1.setVisibility(View.GONE);
+         s2.setVisibility(View.GONE);
+         s3.setVisibility(View.GONE);
+         bs1.setVisibility(View.VISIBLE);
+         bs2.setVisibility(View.VISIBLE);
+         bs3.setVisibility(View.VISIBLE);
+
          addButton.setVisibility(View.VISIBLE);
          saveButton.setVisibility(View.VISIBLE);
          howManyAdditions--;
@@ -563,8 +589,10 @@ public void editTable(int keyValue)
 {
     valForDelete=keyValue;
     tableEditButton.setVisibility(View.VISIBLE);
+    bs1.setVisibility(View.GONE);
     bs2.setVisibility(View.GONE);
     bs3.setVisibility(View.GONE);
+    s1.setVisibility(View.VISIBLE);
     s2.setVisibility(View.VISIBLE);
     s3.setVisibility(View.VISIBLE);
     saveButton.setVisibility(View.GONE);
@@ -599,6 +627,12 @@ public void pageAdd1(View view)
     bs2.setVisibility(View.GONE);
     s2.setVisibility(View.VISIBLE);
     s2.requestFocus();
+}
+
+public void pageAdd(View view){
+         bs1.setVisibility(View.GONE);
+         s1.setVisibility(View.VISIBLE);
+         s1.requestFocus();
 }
 public void onBackPressed(View view)
 {
