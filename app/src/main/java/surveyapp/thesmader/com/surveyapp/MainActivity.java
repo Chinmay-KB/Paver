@@ -44,17 +44,28 @@ public class MainActivity extends AppCompatActivity {
 
     public String correspond(String a)
     {
-        if (stream.equals("B.Tech"))
-            return "0";
-        else if (stream.equals("M.A"))return "1";
-        else if (stream.equals("M.B.A"))return "2";
-        else if (stream.equals("B.Arch"))return "3";
-        else if (stream.equals("M.Sc"))return "4";
-        else if (stream.equals("Integrated M.Sc"))return "5";
-        else if (stream.equals("M.Tech(Res)"))return "6";
-        else if (stream.equals("Dual Degree"))return "7";
-        else if (stream.equals("Ph.D"))return "8";
-        else return "-1";
+        switch (stream) {
+            case "B.Tech":
+                return "0";
+            case "M.A":
+                return "1";
+            case "M.B.A":
+                return "2";
+            case "B.Arch":
+                return "3";
+            case "M.Sc":
+                return "4";
+            case "Integrated M.Sc":
+                return "5";
+            case "M.Tech(Res)":
+                return "6";
+            case "Dual Degree":
+                return "7";
+            case "Ph.D":
+                return "8";
+            default:
+                return "-1";
+        }
     }
 
 
@@ -131,11 +142,15 @@ public class MainActivity extends AppCompatActivity {
 
     public String semCorrespond(String s)
     {
-        if(s.equals("Autumn Semester"))
+        if ("Autumn Semester".equals(s)) {
             return "1";
-        else if(s.equals("Spring Semester"))
+        } else if ("Spring Semester".equals(s)) {
             return "0";
-        else return "2";
+        } else if ("Summer Supplementary".equals(s)){
+            return "2";
+        }
+        else
+        { return "-1";}
     }
 
     public String meCorrespond(String s)
@@ -146,15 +161,18 @@ public class MainActivity extends AppCompatActivity {
     }
     public String yrCorrespond(String s)
     {
-        if(s.equals("1st"))
-            return "1";
-        else if(s.equals("2nd"))
-            return "2";
-        else if(s.equals("3rd"))
-            return "3";
-        else if(s.equals("4th"))
-            return "4";
-        else return "5";
+        switch (s) {
+            case "1st":
+                return "1";
+            case "2nd":
+                return "2";
+            case "3rd":
+                return "3";
+            case "4th":
+                return "4";
+            default:
+                return "5";
+        }
 
 
     }

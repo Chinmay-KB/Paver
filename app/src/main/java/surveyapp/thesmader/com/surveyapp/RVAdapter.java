@@ -3,12 +3,15 @@ package surveyapp.thesmader.com.surveyapp;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
+
+import static android.content.ContentValues.TAG;
 
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> {
@@ -82,6 +85,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
         personViewHolder.whichSem.setText(meCorrespond(semester.get(i)));
         personViewHolder.stream.setText(correspond(streams.get(i)));
         personViewHolder.asSem.setText(semCorrespond(semester.get(i)));
+        Log.e(TAG,"u:"+semester.get(i));
     }
 
 
@@ -90,15 +94,17 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
         return feature.size();
     }
 
-    public String semCorrespond(String s)
-    {
-        if(s.equals("1"))
+    public String semCorrespond(String s) {
+        if ("1".equals(s)) {
             return "Autumn Sem";
-        else if(s.equals("0"))
+        } else if ("0".equals(s)) {
             return "Spring Sem";
-        else return "Summer supp";
+        } else if ("2".equals(s)) {
+            return "Summer Supp";
+        } else {
+            return "";
+        }
     }
-
     public String meCorrespond(String s)
     {
         if(s.equals("1"))
