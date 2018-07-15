@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#4283b5</color>
-    <color name="colorPrimaryDark">#456a9e</color>
+    <color name="colorPrimary">#0094cc</color>
+    <color name="colorPrimaryDark">#005b9f</color>
     <color name="colorAccent">#6bc2f4</color>
-    <color name="selection">#b6b6b6</color>
+    <color name="selection">#5696e7</color>
     <color name="white">#ffffff</color>
+    <color name="tableSelection">#7c7c7c</color>
+    <color name="subText">#1a237e</color>
 </resources>

@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = thisYear-5; i <= thisYear; i++) {
             years.add(Integer.toString(i));
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, years);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.dropdown, years);
 
         Spinner spinYear = (Spinner)findViewById(R.id.exam_year_input);
         spinYear.setAdapter(adapter);
@@ -105,8 +105,6 @@ public class MainActivity extends AppCompatActivity {
         int selectedId=midend.getCheckedRadioButtonId();
         RadioButton rb=findViewById(selectedId);
         midendsem=rb.getText().toString();
-        Toast.makeText(MainActivity.this,
-                rb.getText(), Toast.LENGTH_SHORT).show();
     }
     public void streamChoice1(View view)
     {
@@ -115,8 +113,6 @@ public class MainActivity extends AppCompatActivity {
         RadioButton rb=findViewById(selectedId);
         stream=rb.getText().toString();
         stream2.clearCheck();
-        Toast.makeText(MainActivity.this,
-                rb.getText(), Toast.LENGTH_SHORT).show();
     }
     public void streamChoice2(View view)
     {
@@ -125,8 +121,6 @@ public class MainActivity extends AppCompatActivity {
         RadioButton rb=findViewById(selectedId);
         stream=rb.getText().toString();
         stream1.clearCheck();
-        Toast.makeText(MainActivity.this,
-                rb.getText(), Toast.LENGTH_SHORT).show();
     }
 
     public String semCorrespond(String s)
@@ -135,7 +129,9 @@ public class MainActivity extends AppCompatActivity {
             return "1";
         else if(s.equals("Spring Semester"))
             return "0";
-        else return "2";
+        else if(s.equals("Summer Supplementary"))
+        return "2";
+        else return "-1";
     }
 
     public String meCorrespond(String s)
@@ -160,7 +156,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void dataEntry(View view) {
-        entryActivity x = new entryActivity();
 
         EditText editText = (EditText) findViewById(R.id.subject_code);
         String subjectCode = editText.getText().toString();
@@ -170,16 +165,13 @@ public class MainActivity extends AppCompatActivity {
         semesterValue = semester_select.getSelectedItem().toString();
         Spinner spinYear=(Spinner)findViewById(R.id.exam_year_input);
         examYear=spinYear.getSelectedItem().toString();
-        x.scode = subjectCode;
-        x.semesterValue = semesterValue;
-        x.yearValue = yearValue;
         FirebaseUser users=FirebaseAuth.getInstance().getCurrentUser();;
         if (yearValue.equals("Choose Year") || semesterValue.equals("Choose Semester") || midendsem==null || stream==null || examYear.equals("Exam year"))
             Toast.makeText(getApplicationContext(), "Please provide appropriate input", Toast.LENGTH_SHORT).show();
         else {
             user.put("Subject Code",subjectCode.toUpperCase());
             user.put("Year",yrCorrespond(yearValue));
-            user.put("Semester",semCorrespond(semCorrespond(semesterValue)));
+            user.put("Semester",semCorrespond(semesterValue));
             user.put("Stream",correspond(stream));
             user.put("Mid or End sem",meCorrespond(midendsem));
             user.put("Year of Exam",examYear);

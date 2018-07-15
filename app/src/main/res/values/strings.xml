@@ -10,7 +10,7 @@
     <string name="about_p1">While majority of the studentverse may be convinced that doing away with exams is by far the best way to save paper, we tend to think otherwise.</string>
     <string name="about_p2">With Paver we try to aggregate data spanning across streams, subjects and semesters, then compile and analyse this data, to find just the right dimensions for our humble answer paper not to get wasted.</string>
     <string name="about_p3">Wish there were an app to do the same for our marks 😅. Until then, feel free to contribute to the open source project:</string>
-    <string name="about_dev"><![CDATA[Developers:\nChinmay Kabi - chinmay.kabi@gmail.com \t\t\t\t\t\t\t\tSmarak Das    - dsmarak17@gmail.com]]></string>
+    <string name="about_dev"> Incubated under the aegis of \n Prof Paresh Kale- paresh.iitb@gmail.com \t\t\t\t\t\t\t\tDevelopers:\nChinmay Kabi - chinmay.kabi@gmail.com \t\t\t\t\t\t\t\tSmarak Das    - dsmarak17@gmail.com</string>
     <string name="abt_footer">Made with ❤ at NIT Rourkela</string>
     <string name="gitLink"><a href="https://github.com/Chinmay-KB/SurveyApp?files=1">Paver-Github</a></string>
     <string name="title_activity_about_new">AboutNew</string>

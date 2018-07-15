@@ -404,6 +404,7 @@
                             android:checked="false"
                             android:fontFamily="@font/q"
                             android:onClick="streamChoice2"
+                            android:buttonTint="@color/colorPrimaryDark"
                             android:text="M.Tech(Res)"
                             android:textSize="18sp" />
 
