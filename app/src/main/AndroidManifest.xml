@@ -21,7 +21,7 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/MainTheme" />
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".entryActivity"
             android:theme="@style/AppTheme" />
@@ -35,7 +35,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="surveyapp.thesmader.com.surveyapp.interimActivity" />
         </activity>
-        <activity android:name=".Instructions"></activity>
+        <activity
+            android:name=".Instructions"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".LandingInstructions" />
+        <activity android:name=".SubjectDetails" />
+        <activity android:name=".DataEntry"></activity>
     </application>
 
 </manifest>

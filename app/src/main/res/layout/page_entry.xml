@@ -407,7 +407,7 @@
                             android:checked="false"
                             android:fontFamily="@font/q"
                             android:onClick="streamChoice2"
-                            android:text="M.Tech(Res)"
+                            android:text="M.Tech"
                             android:textSize="18sp" />
 
                         <RadioButton

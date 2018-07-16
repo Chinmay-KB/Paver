@@ -15,4 +15,12 @@
     <string name="gitLink"><a href="https://github.com/Chinmay-KB/SurveyApp?files=1">Paver-Github</a></string>
     <string name="title_activity_about_new">AboutNew</string>
     <string name="instructions">Instructions</string>
+    <string name="landing1">1: This button is used to add a new subject.Tapping on this takes you to the next screen to enter subject details.</string>
+    <string name="landing2">2: These cards represent individual subjects for which you are entering the data. Tapping this will take you to the screen where you enter the data. You can start where you left the data entry for a particular subject.</string>
+    <string name="landing3">3: Tapping on this opens up a navigation drawer from the left. It has 4 options which can be accessed by tapping on them. You reached these instructions this way, similarly you can read the about page, send a bug report to the developers and sign out from the app.</string>
+    <string name="landing4">4: This displays your name taken from your google account.</string>
+    <string name="subject1">1: This is the area where you enter details of the subject.</string>
+    <string name="subject2">2: Enter whether the bundle you have is midsem or endsem.</string>
+    <string name="subject3">3: Select the stream for majority of the students for that bundle of papers.</string>
+    <string name="subject4">4: This button takes you to the next screen where you enter the data for each paper in the bundle.</string>
 </resources>
