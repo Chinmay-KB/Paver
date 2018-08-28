@@ -97,6 +97,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.mainToolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(R.string.app_name);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.colorPrimaryDark));
         toolbar.setNavigationIcon(R.drawable.back);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -197,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
         else {
             user.put("Subject Code",subjectCode.toUpperCase());
             user.put("Year",yrCorrespond(yearValue));
-            user.put("Semester",semCorrespond(semCorrespond(semesterValue)));
+            user.put("Semester",semCorrespond(semesterValue));
             user.put("Stream",correspond(stream));
             user.put("Mid or End sem",meCorrespond(midendsem));
             user.put("Year of Exam",examYear);

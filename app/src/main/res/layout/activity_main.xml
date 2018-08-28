@@ -435,6 +435,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"
         android:background="@color/colorPrimary"
+        android:tint="@color/white"
         android:clickable="true"
         android:focusable="true"
         android:onClick="dataEntry"

@@ -58,8 +58,8 @@ public class interimActivity extends BaseActivity {
         FirebaseUser users= FirebaseAuth.getInstance().getCurrentUser();
         CollapsingToolbarLayout collapsingToolbarLayout=findViewById(R.id.collapsing_toolbar);
         collapsingToolbarLayout.setTitle(users.getDisplayName());
-        collapsingToolbarLayout.setCollapsedTitleTextColor(getResources().getColor(R.color.white));
-        collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.white));
+        collapsingToolbarLayout.setCollapsedTitleTextColor(getResources().getColor(R.color.fff));
+        collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.fff));
         Toolbar toolbar = findViewById(R.id.toolbar_1);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.ham);
@@ -95,7 +95,7 @@ public class interimActivity extends BaseActivity {
                     }
                 });
         RecyclerView recyclerView=findViewById(R.id.lv);
-        adapter=new RVAdapter(this,namesList,streams,midendsems,year,semester,examYear);
+        adapter = new RVAdapter(this,namesList,streams,midendsems,year,semester,examYear);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         fab = findViewById(R.id.floatingActionButton4);

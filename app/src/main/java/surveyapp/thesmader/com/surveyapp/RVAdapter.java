@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+
 import java.util.List;
 
 import static android.content.ContentValues.TAG;
@@ -67,7 +68,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
                 in.putExtra("subject",feature.get(index));
                 in.putExtra("year",year.get(index));
                 in.putExtra("semester",semester.get(index));
-                in.putExtra("stream",streams.get(index));
+                in.putExtra("stream",correspond(streams.get(index)));
                 in.putExtra("MidEnd",midendsems.get(index));
                 in.putExtra("examYear",examYear.get(index));
                 viewGroup.getContext().startActivity(in);
